@@ -232,19 +232,36 @@ int fight(float health, float bp, int move, int nPoke1, int nPoke2){
             temp3 = 1;
     }
     else if(type1 == 3){
-        if(stype1 == 1 || stype1 == 3)
-            temp2 = 0.5;
-        else if(stype1 == 2 || stype1 == 5)
-            temp2 = 2;
-        else if(stype1 == 4 || stype1 == 6)
-            temp2 = 0;
+    	if(stype1 != 4 || move == 2){
+        	if(stype1 == 1 || stype1 == 3)
+            	temp2 = 0.5;
+        	else if(stype1 == 2 || stype1 == 5)
+            	temp2 = 2;
+        	else if(stype1 == 4 || stype1 == 6)
+            	temp2 = 0;
         
-        if(stype2 == 1 || stype2 == 3)
-            temp3 = 0.5;
-        else if(stype2 == 2 || stype2 == 5)
-            temp3 = 2;
-        else if(stype2 == 4 || stype2 == 6)
-            temp3 = 0;
+        	if(stype2 == 1 || stype2 == 3)
+            	temp3 = 0.5;
+        	else if(stype2 == 2 || stype2 == 5)
+            	temp3 = 2;
+        	else if(stype2 == 4 || stype2 == 6)
+            	temp3 = 0;
+        }
+        else if(stype1 == 4 && move == 1){
+        	if(stype1 == 2 || stype1 == 3 || stype1 == 6)
+            	temp2 = 0.5;
+        	else if(stype1 == 1 || stype1 == 4)
+            	temp2 = 2;
+        	else if(stype1 == 5)
+            	temp2 = 1;
+        
+        	if(stype2 == 2 || stype2 == 3 || stype2 == 6)
+            	temp3 = 0.5;
+        	else if(stype2 == 1 || stype2 == 4)
+            	temp3 = 2;
+        	else if(stype2 == 5)
+            	temp3 = 1;
+		}
     }
     else if(type1 == 4){
         if(stype1 == 1 || stype1 == 4 || stype1 == 6)
@@ -295,13 +312,13 @@ int fight(float health, float bp, int move, int nPoke1, int nPoke2){
         else if(stype2 == 4 || stype2 == 6)
             temp3 = 1;
     }
+    
     printf("hp: %f, bp: %f, temp: %f, temp2: %f, temp3: %f", health, bp, temp, temp2, temp3);
     health = health - (bp * temp * temp2 * temp3);
     return health;
 }
 int main()
 {
-    pikachu();
     int game = 1;
     int choice = 0;
     int nPoke1, nPoke2;
@@ -516,6 +533,6 @@ int main()
         printf("Player 1 wins!\n\n");
     }
     printf("**************************************************\n\n");
-    printf("Press any key to exit...");
+
     return 0;
 }
